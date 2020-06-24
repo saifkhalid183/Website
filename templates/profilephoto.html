@@ -2,15 +2,9 @@
 {% block title %}profile photo
 {% endblock title %}
 {% block body %}
-<form method="post" action="/changeprofilephoto">
+<form action="/changeprofilephoto" method="post" enctype="multipart/form-data">
 {% csrf_token %}
-<div class="control-group my-4 px-4 text-center">
-            <div class="form-group floating-label-form-group controls">
-              <label>Img File</label>
-              <input class="form-control" placeholder="Img File" name="img_file" id="img_file" required data-validation-required-message="Please enter a message." value="{{post.img_file}}"></textarea>
-              <p class="help-block text-danger"></p>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-          </form>
+<input type="file" name="uploadfile">
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
 {% endblock body %}

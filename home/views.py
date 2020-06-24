@@ -1,9 +1,13 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponse
 from django.contrib.auth.models import User
+from werkzeug.utils import secure_filename
+import os
 from django.contrib.auth import logout,login,authenticate
 from datetime import datetime
 from home.models import Contact
 from home.models import Photo
+from home.models import Post
 from django.contrib import messages
 # test user : SaifKhalid21
 # password: saifkhalid
@@ -16,21 +20,22 @@ def signup(request):
         lname=request.POST.get('lname')
         user = User.objects.create_user(username, email, password)
         user.last_name=lname
-        user.profilephoto=profilephoto
+        # user.profilephoto=profilephoto
         user.save()
         return redirect('/')
     return render(request,'signup.html')
 
 def index(request):
-    if request.user.is_anonymous:
-        return redirect('/login')
-    return render(request,'index.html')
+    posts=Post.objects.all()
+    context={'posts':posts}
+    return render(request,'index.html',context)
 
 def loginUser(request):
     if request.method=="POST":
         username=request.POST.get('username')
         password=request.POST.get('password')
         user=authenticate(username=username,password=password)
+        # string=username+".jpg"
         if user is not None:
             login(request,user)
             return redirect('/user')
@@ -57,8 +62,10 @@ def contact(request):
     return render(request,"contact.html")
 
 def photo(request):
-    if request.method=="POST":
-        img_file=request.POST.get('img_file')
-        profilephoto=Photo(img_file=img_file)
-        profilephoto.save()
+    if request.method=='POST':
+        f=request.FILES['uploadfile']
+        dp=Photo(img_file=f)
+        dp.save()
+        # f=str(f)
+        return HttpResponse("UPLOADED SUCCESSFULLY.")
     return render(request,"profilephoto.html")

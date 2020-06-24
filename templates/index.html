@@ -2,6 +2,7 @@
 <html>
 <head>
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <style>
 ul {
   list-style-type: none;
@@ -31,25 +32,34 @@ li a:hover {
 <body>
 
 <ul>
-<li><a href="/logout">logout</a></li>
   <li><a href="/login">login/sign up</a></li>
   <li><a href="/contact">Contact Us</a></li>
   <li><a href="/news">News</a></li>
     <li><a href="/">Home</a></li>
 </ul>
-<section class="text-gray-700 body-font">
-  <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-    <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Before they sold out
-        <br class="hidden lg:inline-block">readymade gluten
-      </h1>
-      <p class="mb-8 leading-relaxed">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.</p>
-    </div>
-    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-      <img class="object-cover object-center rounded" alt="hero" src="https://source.unsplash.com/collection/190727/720x600/?india,rajasthan">
-    </div>
-  </div>
-</section>
+<div class="container-fluid my-3 px-0" style="width :  1200 px ; height: 900 px">
+<img src="/static/home-bg.jpg">
+</div>
+{% for post in posts %}
+<div class="row mb-2">
+    <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h3 class="mb-0">{{post.title}}</h3>
+          <strong class="d-inline-block mb-2 text-primary">By {{post.name}}</strong>
+          <div class="mb-1 text-muted">{{post.date}}</div>
+          <p class="card-text mb-auto">{{post.content}}</p>
+          <a href="#" class="stretched-link">Continue reading</a>
+        </div>
+        </div>
+        </div>
+        </div>
+
+<br>
+{% endfor %}
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </html>
 
